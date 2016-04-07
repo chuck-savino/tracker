@@ -1,0 +1,16 @@
+.navbar-nav > li > .dropdown-menu {
+    background: rgba(30, 30, 30, 0.8) none repeat scroll 0 0;    
+}
+
+.dropdown-menu > li > a {
+    color:#ccc;
+    min-width:200px;
+}
+
+.dropdown-menu > li > a:hover {
+    color:#ccc;
+    background: #000;
+    border-left:5px solid #ffb900;
+    padding: 3px 20px 3px 15px;
+}
+
