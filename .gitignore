@@ -5,8 +5,6 @@ application/controllers/News2.php
 application/models/News_model2.php
 application/views/news_article2.php
 
-application/config/database.php
-application/config/config.php
 coverage/*
 
 application/cache/*
