@@ -27,7 +27,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="<?php echo base_url(); ?>application/third_party/jquery/jquery-1.12.0.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="<?php echo base_url(); ?>application/third_party/bootstrap/js/bootstrap.min.js"></script>
-	<style type="text/css">
+	
+        <!-- Datatables cd
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/jqc-1.12.0,dt-1.10.11/datatables.min.css"/>
+        <script type="text/javascript" src="https://cdn.datatables.net/t/dt/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+         
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/bs-3.3.6/dt-1.10.11/datatables.min.css"/>
+         -->
+        
+        <script type="text/javascript" src="https://cdn.datatables.net/t/bs-3.3.6/dt-1.10.11/datatables.min.js"></script>
+
+        
+        <style type="text/css">
 
 	::selection { background-color: #E13300; color: white; }
 	::-moz-selection { background-color: #E13300; color: white; }
@@ -49,24 +60,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="<?php echo base_url(); ?>"><span class="glyphicon glyphicon-home"></span></a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <?php if ($this->ion_auth->in_group('admin'))
-              { ?>        
-              <li class="dropdown">
+                <?php 
+                if ($this->ion_auth->in_group('admin'))
+                { 
+                ?>  
+                <li class="active"><a href="<?php echo base_url(); ?>"><span class="glyphicon glyphicon-home"></span></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Issues <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="<?php echo base_url(); ?>issues/issue_update">New Issue</a></li>
+                        <li><a href="<?php echo base_url(); ?>issues/show_all_issues">All Issues</a></li>
+                    </ul>
+                </li>
+                <?php
+                }
+                if ($this->ion_auth->in_group('admin'))
+                {
+                ?> 
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Keywords <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="<?php echo base_url(); ?>statuses/add_status">New Status</a></li>
+                        <li><a href="<?php echo base_url(); ?>statuses/show_all_statuses">All Statuses</a></li>
+                    </ul>
+                </li>
+                       
+                <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="<?php echo base_url(); ?>base_auth/create_user">Register New User</a></li>
                   <li><a href="<?php echo base_url(); ?>base_auth/create_group">Create New Group</a></li>
                   <li><a href="<?php echo base_url(); ?>base_auth">List Users</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li class="dropdown-header">Nav header</li>
-                  <li><a href="#">Separated link1</a></li>
-                  <li><a href="#">Another separated link</a></li>
                 </ul>
               </li>
-              <?php } ?>
+                <?php 
+                } 
+                ?>
             </ul>
           <form action="<?php echo base_url(); ?>base_auth/base_auth_request" method="post" class="navbar-form navbar-right">
             <?php if (!$this->ion_auth->logged_in()) { ?> 

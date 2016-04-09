@@ -68,4 +68,27 @@ label, i
     position: relative;
     left: 20px;
 }
+
+.form-group
+{
+    /*border-top: 1px solid silver;*/
+}
+
+.form-horizontal
+{
+    border-bottom: 1px solid silver;
+}
+
+.form-horizontal .control-label
+{
+    padding-top:10px;
+}
 /* forms rules end */
+
+/* datatables rules begin */
+.dataTables_filter
+{
+    float:right;
+}
+
+/* datatables rules end */
