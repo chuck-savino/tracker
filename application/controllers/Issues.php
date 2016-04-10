@@ -68,21 +68,14 @@ Class Issues extends Base_controller
         
         if($id === NULL)
         {
-            $data['v'] = 'issue_edit';
             $data['title'] = 'New Issue';
-            if(!empty(validation_errors()))
-            {    
-                $data['message'] = validation_errors();
-                $data['msg_type'] = 'alert-danger';
-            }    
-            $this->load->view('bootstrap_auth/template',$data);
-            return;
         }
         else 
         {
+            $data['title'] = 'New Issue';
             $data['issue'] = $this->issue_model->get_issue_by_id($id);
         }
-                
+        
         //setup validation
         $this->load->library('form_validation');
         
@@ -97,8 +90,6 @@ Class Issues extends Base_controller
        
         if($this->form_validation->run() == FALSE)
         {
-            $data['v'] = 'issue_edit';
-            $data['title'] = 'Edit Issue';
             if(!empty(validation_errors()))
             {    
                 $data['message'] = validation_errors();
