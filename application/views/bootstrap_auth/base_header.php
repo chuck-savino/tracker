@@ -68,7 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Issues <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="<?php echo base_url(); ?>issues/issue_update">New Issue</a></li>
+                        <li><a href="<?php echo base_url(); ?>issues">New Issue</a></li>
                         <li><a href="<?php echo base_url(); ?>issues/show_all_issues">All Issues</a></li>
                     </ul>
                 </li>

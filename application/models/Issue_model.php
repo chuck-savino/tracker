@@ -39,7 +39,16 @@ class Issue_model extends CI_Model
         $this->db->delete('issues',array('id'=>$id));
         $chk =  $this->db->affected_rows();
         return $chk == 0  ? false : true;
-    }     
+    }
+    
+    public function update_issue($data)
+    {
+        $this->db->set('created_at','NOW()',FALSE);
+        $this->db->insert('issues', $data);
+        $chk =  $this->db->affected_rows();
+        return $chk == 0  ? false : true;
+        
+    }        
             
 }
 
