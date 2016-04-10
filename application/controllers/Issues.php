@@ -19,15 +19,7 @@ Class Issues extends Base_controller
     }
     
     public function index()
-    {
-         $data['v'] = 'issue_edit';
-         $data['title'] = 'New Issue';
-         $data = $this->get_list_options($data);
-         $this->load->view('bootstrap_auth/template',$data);
-    }        
-    
-    public function show_all_issues()
-    {
+    {        
         $data['title'] = "All Issues";
         $data['issues'] = $this->issue_model->get_all_issues_summary();
         $data['v'] = 'issues';
@@ -41,21 +33,6 @@ Class Issues extends Base_controller
         $data['issue'] = $this->issue_model->get_issue_by_id($id);
         $data['v'] = 'issue';
         $this->load->view('bootstrap_auth/template',$data);
-    }
-    
-    public function show_all_issues2()
-    {
-        $data['title'] = "All Issues";
-        $data['issues'] = $this->issue_model->get_all_issues_summary();
-        $data['v'] = 'issues';
-        $this->load->view('bootstrap_auth/template',$data);
-    }
-    
-    public function show_all_issues_json()
-    {
-        $i = $this->issue_model->get_all_issues_summary();
-        $data['data']=$i;
-        echo json_encode($data);
     }
     
     public function delete_issue($id = NULL)

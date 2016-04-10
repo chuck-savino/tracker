@@ -33,22 +33,17 @@
                 
                 'class' => 'form-control'
             );
-            $set_stat_def = "";
-            if(!empty(set_value('status')))
+            $set_status_def = "";
+            if (isset($issue)) 
             {
-                
-                $set_stat_def = set_value('status');
-            } 
-            elseif (isset($issue)) 
-            {
-                $set_stat_def = $issue[0]['status'];
+                $set_status_def = set_value('status', $issue[0]['status']) ;
             }
             else 
             {
-                $set_stat_def = '0'; 
+                $set_status_def = set_value('status'); 
             }
             $statuses = array('0' => 'Select a status') + $statuses;
-            echo form_dropdown('status', $statuses,$set_stat_def,$data_status);
+            echo form_dropdown('status', $statuses,$set_status_def,$data_status);
             echo "</div>";
             
             echo "<div class='form-group'>";
@@ -59,18 +54,13 @@
             $users = array('0' => 'Select a user') + $users;
             
             $set_assigned_to_def = "";
-            if(!empty(set_value('assigned_to')))
+            if (isset($issue)) 
             {
-                
-                $set_assigned_to_def = set_value('assigned_to');
-            } 
-            elseif (isset($issue)) 
-            {
-                $set_assigned_to_def = $issue[0]['assigned_to'];
+                $set_assigned_to_def = set_value('assigned_to', $issue[0]['assigned_to']) ;
             }
             else 
             {
-                $set_assigned_to_def = '0'; 
+                $set_assigned_to_def = set_value('assigned_to'); 
             }
             
             echo form_dropdown('assigned_to', $users,$set_assigned_to_def,$data_assigned_to);
@@ -103,6 +93,14 @@
             echo form_label('Authenticated? *','authenticated') . '<br>';
             
             $set_authenticated1_def = "";
+            if (isset($issue)) 
+            {
+                $set_status_def = set_value('status', $issue[0]['status']) ;
+            }
+            else 
+            {
+                $set_status_def = set_value('status'); 
+            }
             if(!empty(set_value('authenticated')))
             {
                 

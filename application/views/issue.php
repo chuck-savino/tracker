@@ -94,6 +94,6 @@
 </div>
 <div class="col-sm-10">
     <p></p>
-<a class="btn btn-small btn-primary" href="../issues/show_all_issues">Back</a>
+<a class="btn btn-small btn-primary" href="../">Back</a>
 </div>
 </div>
