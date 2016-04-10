@@ -55,7 +55,6 @@ class Issue_model extends CI_Model
             $this->db->update('issues', $data);
             $chk =  $this->db->affected_rows();
         }
-        
         return $chk == 0  ? false : true;        
     }        
             

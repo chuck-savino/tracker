@@ -9,8 +9,7 @@
 
 <div class="container">
 
-    <div class="alert   <?php   if(isset($message)) { echo  'show'  . ' ' . $msg_type; } else {echo 'hide'; }?>"  id="infoMessage"><?php echo $message;?></div>  
-    <div class="alert   <?php   if(null != validation_errors()) { echo  'show alert-danger';} ?>"  id="infoMessage"><?php echo validation_errors();?></div>
+   <div class="alert   <?php   if(isset($message)) { echo  'show'  . ' ' . $msg_type; } else {echo 'hide'; }?>"  id="infoMessage"><?php echo $message;?></div>  
     <h2> <?php echo $title; ?></h2>
     <div class="row">
         <div class="col-md-4" >

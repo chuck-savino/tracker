@@ -15,7 +15,6 @@ Class Issues extends Base_controller
         $this->load->model('issue_model');
         $this->load->model('status_model');
         $this->load->model('user_model');
-       
     }
     
     public function index()
@@ -58,7 +57,6 @@ Class Issues extends Base_controller
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
-            
     } 
     
     public function update_issue($id = NULL)

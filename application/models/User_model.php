@@ -15,7 +15,7 @@ class User_model extends CI_Model
     public function get_all_users_list()
     {
         $this->db->select('users.id, users.first_name, users.last_name');
-         $this->db->order_by('first_name, last_name');
+        $this->db->order_by('first_name, last_name');
         
         $query = $this->db->get('users');
         foreach($query->result_array() as $key => $value)
@@ -26,8 +26,4 @@ class User_model extends CI_Model
         return $users_list;
     }
         
-        
-        
-           
-    
 }

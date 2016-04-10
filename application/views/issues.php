@@ -21,7 +21,7 @@ $issues_rev = array_map(function($issues){
    );
 },$issues);
 
-
+//swap assigned_to code with the user's name from the $data[users] table
 foreach($issues_rev as $key => $value)
 {
     $issues_rev[$key]['assigned to'] = $users[$value['assigned to']];
@@ -31,7 +31,7 @@ foreach($issues_rev as $key => $value)
 $issues_table = build_table($issues_rev, 'table1');
 ?>
 
-<div id="xcontainer" class="container">
+<div class="container">
     
     <div class="alert   <?php   if(!empty($message)) { echo  'show'  . ' ' . $msg_type; } else {echo 'hide'; }?>"  id="infoMessage"><?php echo $message;?></div>  
     <h2><?php echo $title; ?></h2>

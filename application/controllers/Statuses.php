@@ -61,10 +61,12 @@ class Statuses extends Base_Controller
         $this->load->library('form_validation');
         $this->form_validation->set_rules('status','Status','required');
         
-        if($this->form_validation->run() == FALSE)
+        if($this->form_validation->run() === FALSE)
         {
             $data['v'] = 'status_edit';
             $data['title'] = 'New Status';
+            $data['message'] = validation_errors();
+            $data['msg_type'] = 'alert-danger';
             $this->load->view('bootstrap_auth/template',$data);
             return;
         }    
