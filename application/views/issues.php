@@ -6,14 +6,13 @@
  * and open the template in the editor.
  */
 
-
 $issues_rev = array_map(function($issues){
-    
+     
    return array(
        'id'=>$issues['id'],
        'title'=>$issues['name'],
        'status'=>$issues['status'],
-       'assigned to'=>$issues['assigned_to'],
+       'assigned to'=> $issues['assigned_to'],
        'os'=>$issues['os'],
        'last updated'=>date("m/d/y h:i:s a",strtotime($issues['updated_at'])),
        '&nbsp;'=> "<a class=\"btn btn-xs btn-success\" href=\"" . base_url() . "issues/get_issue/{$issues['id']}\">Browse</a>"
@@ -21,6 +20,14 @@ $issues_rev = array_map(function($issues){
             . "&nbsp;&nbsp;<a class=\"btn btn-xs btn-warning\" href=\"" . base_url() . "issues/delete_issue/{$issues['id']}\">Delete</a>"         
    );
 },$issues);
+
+
+foreach($issues_rev as $key => $value)
+{
+    $issues_rev[$key]['assigned to'] = $users[$value['assigned to']];
+    
+}    
+
 $issues_table = build_table($issues_rev, 'table1');
 ?>
 

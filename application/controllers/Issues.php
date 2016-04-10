@@ -31,6 +31,7 @@ Class Issues extends Base_controller
         $data['title'] = "All Issues";
         $data['issues'] = $this->issue_model->get_all_issues_summary();
         $data['v'] = 'issues';
+        $data = $this->get_list_options($data);
         $this->load->view('bootstrap_auth/template',$data);
     }
     
@@ -85,11 +86,26 @@ Class Issues extends Base_controller
     
     public function update_issue($id = NULL)
     {
-        $data['statuses'] = $this->status_model->get_all_status_values();
-        $data['users'] = $this->user_model->get_all_users_list();
+        $data['v'] = 'issue_edit';
+        $data = $this->get_list_options($data);
         
-        
-        
+        if($id === NULL)
+        {
+            $data['v'] = 'issue_edit';
+            $data['title'] = 'New Issue';
+            if(!empty(validation_errors()))
+            {    
+                $data['message'] = validation_errors();
+                $data['msg_type'] = 'alert-danger';
+            }    
+            $this->load->view('bootstrap_auth/template',$data);
+            return;
+        }
+        else 
+        {
+            $data['issue'] = $this->issue_model->get_issue_by_id($id);
+        }
+                
         //setup validation
         $this->load->library('form_validation');
         
@@ -99,12 +115,13 @@ Class Issues extends Base_controller
         $this->form_validation->set_rules('os','OS','required');
         $this->form_validation->set_rules('url','URL','required');
         $this->form_validation->set_rules('authenticated','Authenticated','required');
+        $this->form_validation->set_rules('error_msg','Error Message','required');
         $this->form_validation->set_rules('expected_output','Expected Output','required');
        
         if($this->form_validation->run() == FALSE)
         {
             $data['v'] = 'issue_edit';
-            $data['title'] = 'New Issue';
+            $data['title'] = 'Edit Issue';
             if(!empty(validation_errors()))
             {    
                 $data['message'] = validation_errors();
@@ -127,9 +144,9 @@ Class Issues extends Base_controller
                 'notes' => $this->input->post('notes')
             );
             
-            $chk = $this->issue_model->update_issue($issue);
+            $chk = $this->issue_model->update_issue($id,$issue);
             
-            $data['message'] = 'Issue saved successfully';
+            $data['message'] = 'Issue updated';
             $data['msg_type'] = 'alert-success';
             $data['issues'] = $this->issue_model->get_all_issues_summary();
             $data['v'] = 'issues';

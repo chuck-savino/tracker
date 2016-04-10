@@ -41,13 +41,22 @@ class Issue_model extends CI_Model
         return $chk == 0  ? false : true;
     }
     
-    public function update_issue($data)
+    public function update_issue($id = NULL, $data)
     {
-        $this->db->set('created_at','NOW()',FALSE);
-        $this->db->insert('issues', $data);
-        $chk =  $this->db->affected_rows();
-        return $chk == 0  ? false : true;
+        if (is_null($id))
+        {    
+            $this->db->set('created_at','NOW()',FALSE);
+            $this->db->insert('issues', $data);
+            $chk =  $this->db->affected_rows();
+        }
+        else 
+        {
+            $this->db->where('id',$id);
+            $this->db->update('issues', $data);
+            $chk =  $this->db->affected_rows();
+        }
         
+        return $chk == 0  ? false : true;        
     }        
             
 }
