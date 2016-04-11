@@ -2,9 +2,8 @@
 include_once 'bootstrap_auth/Base_controller.php';
 
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Base_controller ensures that no methods can be executed unless the user is logged in
+ * 
  */
 
 Class Issues extends Base_controller 
@@ -19,10 +18,7 @@ Class Issues extends Base_controller
     
     public function index()
     {        
-        $data['title'] = "All Issues";
-        $data['issues'] = $this->issue_model->get_all_issues_summary();
-        $data['v'] = 'issues';
-        $data = $this->get_list_options($data);
+        $data = $this->prep_data_for_all_issues($data);
         $this->load->view('bootstrap_auth/template',$data);
     }
     
@@ -50,9 +46,7 @@ Class Issues extends Base_controller
                 $data['msg_type'] = 'alert-success';
             }
             
-            $data['issues'] = $this->issue_model->get_all_issues_summary();
-            $data['v'] = 'issues';
-            $data['title'] = 'All Issues';
+            $data = $this->prep_data_for_all_issues($data);
             $this->load->view('bootstrap_auth/template',$data);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
@@ -70,7 +64,7 @@ Class Issues extends Base_controller
         }
         else 
         {
-            $data['title'] = 'New Issue';
+            $data['title'] = 'Edit Issue';
             $data['issue'] = $this->issue_model->get_issue_by_id($id);
         }
         
@@ -111,15 +105,19 @@ Class Issues extends Base_controller
             );
             
             $chk = $this->issue_model->update_issue($id,$issue);
-            
-            $data['message'] = 'Issue updated';
-            $data['msg_type'] = 'alert-success';
-            $data['issues'] = $this->issue_model->get_all_issues_summary();
-            $data['v'] = 'issues';
-            $data['title'] = 'All Issues';
+            if($chk === true)
+            {    
+                $data['message'] = "Issue $id updated";
+                $data['msg_type'] = 'alert-success';
+            }
+            else 
+            {
+                $data['message'] = "Issue $id not updated updated";
+                $data['msg_type'] = 'alert-danger';
+            }
+            $data = $this->prep_data_for_all_issues($data);
             $this->load->view('bootstrap_auth/template',$data);
         }
-        
     } 
     
     public function dropdown_check($str)
@@ -141,6 +139,14 @@ Class Issues extends Base_controller
         $data['users'] = $this->user_model->get_all_users_list();
         
         return $data;
+    }
+    
+    private function prep_data_for_all_issues($data)
+    {
+        $data['title'] = "All Issues";
+        $data['issues'] = $this->issue_model->get_all_issues_summary();
+        $data['v'] = 'issues';
+        $data = $this->get_list_options($data);
+        return $data;
     }        
 }
-
