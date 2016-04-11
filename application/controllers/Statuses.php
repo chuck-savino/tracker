@@ -59,7 +59,7 @@ class Statuses extends Base_Controller
     public function form_submit()
     {
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('status','Status','required');
+        $this->form_validation->set_rules('status','Status','required|is_unique[statuses.status]');
         
         if($this->form_validation->run() === FALSE)
         {

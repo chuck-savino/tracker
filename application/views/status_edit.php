@@ -19,6 +19,7 @@
             echo form_label('status','status');
             $data_status = array(
                 'name'=> 'status',
+                'value' => set_value('status'),
                 'placeholder' => 'Enter a status',
                 'class'=>'col-md-2 form-control'  
             );
