@@ -101,7 +101,7 @@ function add_form_input($fld_name, $array_name,$placeholder = NULL,$fld_label = 
     echo "</div>";
 }
 
-function add_form_dropdown($fld_name, $array_name,$options = NULL, $default_value = NULL,$fld_label = NULL)
+function add_form_select($fld_type, $fld_name, $array_name,$options = NULL, $default_value = NULL,$fld_label = NULL)
 {
     echo "<div class='form-group'>";
     echo form_label($fld_label,$fld_name);
@@ -118,9 +118,18 @@ function add_form_dropdown($fld_name, $array_name,$options = NULL, $default_valu
         $set_fld_def = set_value($fld_name); 
     }
     $options = array('0' => $default_value) + $options;
-    echo form_dropdown($fld_name, $options,$set_fld_def,$data_status);
+    if ($fld_type == 'dropdown')
+    {    
+        echo form_dropdown($fld_name, $options,$set_fld_def,$data_status);
+    }
+    else 
+    {
+        echo form_multiselect($fld_name, $options,$set_fld_def,$data_status);
+    }
     echo "</div>";
 }
+
+
 
 function add_form_checkbox_or_radio($fld_type, $fld_name, $array_name, $options = NULL, $default_value = NULL,$fld_label = NULL)
 {

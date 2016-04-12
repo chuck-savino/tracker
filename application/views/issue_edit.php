@@ -17,8 +17,8 @@
             echo form_open("issues/update_issue/" . $id_seg);
             //these custom helper functions in helpers/base_helpers
             add_form_input('name', $issue, 'Add a Title', 'Title *');
-            add_form_dropdown('status', $issue,$statuses, 'Select a status','Status *');
-            add_form_dropdown('assigned_to', $issue,$users, 'Select a user','Assigned To *');
+            add_form_select('dropdown','status', $issue,$statuses, 'Select a status','Status *');
+            add_form_select('dropdown', 'assigned_to', $issue,$users, 'Select a user','Assigned To *');
             add_form_input('os', $issue, 'Add an OS', 'OS *');
             add_form_input('url', $issue, 'Add a URL', 'URL *');
             add_form_checkbox_or_radio('radio', 'authenticated', $issue,array('1'=>'yes', '0'=>'no'), $default_value = NULL,'Authenticated? *');
