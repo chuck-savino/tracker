@@ -37,7 +37,14 @@ class Statuses extends Base_Controller
             $chk = $this->status_model->delete_status($status);
             if($chk === false)
             {
-                $data['message'] = '#20160408-1109: The status ' . $status . ' could not be deleted.';
+                if($this->db->error()['code'] == 1451)
+                {    
+                    $data['message'] = '#20160408-1109: The status ' . $status . ' could not be deleted because one or more issues use it.';
+                }
+                else
+                {
+                    $data['message'] = '#20160412-0809: The status ' . $status . ' could not be deleted.';
+                }    
                 $data['msg_type'] = 'alert-danger';
             }
             else 

@@ -42,7 +42,7 @@ class Status_model extends CI_Model
     {
         $this->db->delete('statuses',array('status'=>$status));
         $chk =  $this->db->affected_rows();
-        return $chk == 0  ? false : true;
+        return $chk == -1  ? false : true;   //this is a ci hack in the db driver
         
     }        
     
