@@ -14,7 +14,7 @@ $issues_rev = array_map(function($issues){
        'status'=>$issues['status'],
        'assigned to'=> $issues['assigned_to'],
        'os'=>$issues['os'],
-       'last updated'=>date("m/d/y h:i:s a",strtotime($issues['updated_at'])),
+       'last updated'=>date("m/d/Y h:i:s a",strtotime($issues['updated_at'])),
        '&nbsp;'=> "<a class=\"btn btn-xs btn-success\" href=\"" . base_url() . "issues/get_issue/{$issues['id']}\">Browse</a>"
             . "&nbsp;&nbsp;<a class=\"btn btn-xs btn-primary\" href=\"" . base_url() . "issues/update_issue/{$issues['id']}\">Edit</a>"
             . "&nbsp;&nbsp;<a class=\"btn btn-xs btn-warning\" href=\"" . base_url() . "issues/delete_issue/{$issues['id']}\">Delete</a>"         

@@ -5,12 +5,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+$radio_options = array (
+    1 => 'yes',
+    0 => 'no'
+)
 ?>
 <div class="container">
     
 <h2><?php echo $title; ?></h2>
 <br>
 <div class="form-horizontal col-sm-10">
+    <div class="form-group ">
+        <label class="col-sm-2 control-label">
+            Issue ID
+        </label>
+        <div class="col-sm-8">
+            <p class="form-control-static"><?php echo $issue[0]['id'];?></p>
+        </div>
+    </div>
     <div class="form-group ">
         <label class="col-sm-2 control-label">
             Title
@@ -48,7 +61,7 @@
             Authenticated
         </label>
         <div class="col-sm-8">
-            <p class='form-control-static'><?php echo $issue[0]['authenticated']; ?></p>
+            <p class='form-control-static'><?php echo $radio_options[$issue[0]['authenticated']]; ?></p>
         </div>
     </div>
     <div class='form-group'>
@@ -80,7 +93,7 @@
             Updated By
         </label>
         <div class="col-sm-8">
-            <p class="form-control-static"><?php echo $issue[0]['updated_by']; ?></p>
+            <p class="form-control-static"><?php echo $users[$issue[0]['updated_by']]; ?></p>
         </div>    
     </div>
     <div class='form-group'>
@@ -88,7 +101,7 @@
             Last Updated
         </label>
         <div class="col-sm-8">
-            <p class="form-control-static"><?php echo $issue[0]['updated_at']; ?></p>
+            <p class="form-control-static"><?php echo date("m/d/Y h:i:s a",strtotime($issue[0]['updated_at'])); ?></p>
         </div>    
     </div>
 </div>

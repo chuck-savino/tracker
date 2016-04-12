@@ -27,7 +27,8 @@ Class Issues extends Base_controller
     {
         $data['title'] = "Issue";
         $data['issue'] = $this->issue_model->get_issue_by_id($id);
-        $data['v'] = 'issue';
+        $data = $this->get_list_options($data);
+        $data['v'] = 'issue';        
         $this->load->view('bootstrap_auth/template',$data);
     }
     
