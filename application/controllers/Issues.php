@@ -18,6 +18,7 @@ Class Issues extends Base_controller
     
     public function index()
     {        
+        $data=[];
         $data = $this->prep_data_for_all_issues($data);
         $this->load->view('bootstrap_auth/template',$data);
     }
