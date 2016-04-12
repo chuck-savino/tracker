@@ -10,8 +10,7 @@
     
     <div class="alert   <?php   if(isset($message)) { echo  'show'  . ' ' . $msg_type; } else {echo 'hide'; }?>"  id="infoMessage"><?php echo $message;?></div>  
     <h2> <?php echo $title; ?></h2>
-    <div class="row">
-        <div class="col-md-6" >
+    <div class="row col-md-6" >
         <?php
             $issue = isset($issue) ? $issue : NULL;
             $id_seg = isset($issue) ? "{$issue[0]['id']}/": '';
@@ -27,15 +26,12 @@
             add_form_input('expected_output', $issue, 'Describe the results you expected', 'Expected Output * ',8);
             add_form_input('notes', $issue, 'Additional Notes', 'Notes',8);
             ?>    
-
-            <div class="row">
-                <div class="col-md-4">
-                <?php
-                    echo form_submit('submit','Submit',"class=\"btn btn-primary\"");
-                    echo form_close();
-                ?> 
-                </div>    
-            </div>    
-        </div>
+        <div class="row col-md-6">
+            <?php
+                echo form_submit('submit','Submit',"class=\"btn btn-primary\"");
+                echo form_close();
+            ?> 
+        </div>    
     </div>
+</div>
 

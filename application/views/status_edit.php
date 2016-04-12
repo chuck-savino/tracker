@@ -11,21 +11,17 @@
 
    <div class="alert   <?php   if(isset($message)) { echo  'show'  . ' ' . $msg_type; } else {echo 'hide'; }?>"  id="infoMessage"><?php echo $message;?></div>  
     <h2> <?php echo $title; ?></h2>
-    <div class="row">
-        <div class="col-md-4" >
+    <div class="row col-md-4" >
         <?php
             echo form_open('statuses/form_submit');
             add_form_input('status', NULL,'Enter a status')
         ?>
+        <div class="row col-md-4">
+            <?php
+                echo form_submit('submit','Submit',"class=\"btn btn-primary\"");
+                echo form_close();
+            ?> 
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-        <?php
-            echo form_submit('submit','Submit',"class=\"btn btn-primary\"");
-            echo form_close();
-        ?> 
-        </div>    
     </div>    
     
     
