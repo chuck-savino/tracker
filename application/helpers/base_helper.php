@@ -122,7 +122,7 @@ function add_form_dropdown($fld_name, $array_name,$options = NULL, $default_valu
     echo "</div>";
 }
 
-function add_form_radio($fld_name, $array_name,$options = NULL, $default_value = NULL,$fld_label = NULL)
+function add_form_checkbox_or_radio($fld_type, $fld_name, $array_name, $options = NULL, $default_value = NULL,$fld_label = NULL)
 {
     echo "<div class='form-group'>";
     echo form_label($fld_label,$fld_name) . '<br>';
@@ -149,7 +149,15 @@ function add_form_radio($fld_name, $array_name,$options = NULL, $default_value =
             'checked' => $set_default,
             'class' => 'radio-inline'
         );
-        echo form_label("$display_value &nbsp;","$display_value") .form_radio($data_display);
+        
+        if($fld_type == 'checkbox')
+        {    
+            echo form_label("$display_value &nbsp;","$display_value") . form_checkbox($data_display);
+        }
+        else
+        {
+            echo form_label("$display_value &nbsp;","$display_value") . form_radio($data_display);
+        }    
     }    
     
     echo "</div>";
