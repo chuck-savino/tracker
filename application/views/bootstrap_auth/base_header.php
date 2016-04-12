@@ -28,15 +28,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="<?php echo base_url(); ?>application/third_party/bootstrap/js/bootstrap.min.js"></script>
 	
-        <!-- Datatables cd
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/jqc-1.12.0,dt-1.10.11/datatables.min.css"/>
-        <script type="text/javascript" src="https://cdn.datatables.net/t/dt/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
-         
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/bs-3.3.6/dt-1.10.11/datatables.min.css"/>
-         -->
-        
-        <script type="text/javascript" src="https://cdn.datatables.net/t/bs-3.3.6/dt-1.10.11/datatables.min.js"></script>
+        <!-- Datatables bootstrap styling already loaded -->
 
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/bs/jszip-2.5.0,pdfmake-0.1.18,dt-1.10.11,b-1.1.2,b-html5-1.1.2/datatables.min.css"/>
+        <script type="text/javascript" src="https://cdn.datatables.net/t/bs/jszip-2.5.0,pdfmake-0.1.18,dt-1.10.11,b-1.1.2,b-html5-1.1.2/datatables.min.js"></script>
         
         <style type="text/css">
 

@@ -45,7 +45,7 @@ $radio_options = array (
             Assigned To
         </label>
         <div class="col-sm-8">
-            <p class='form-control-static'><?php echo $issue[0]['assigned_to']; ?></p>
+            <p class='form-control-static'><?php echo $users[$issue[0]['assigned_to']]; ?></p>
         </div>
     </div>
     <div class="form-group">

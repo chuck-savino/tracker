@@ -42,6 +42,14 @@ $issues_table = build_table($issues_rev, 'table1');
 
 <script>
     $(document).ready(function(){
-        $('#table1').DataTable();
+        $('#table1').DataTable({
+            dom:'Blfrtip',    
+            buttons: [ 'copy', 'csv','excel', 'pdf']        
+            });
+        $('#table1_wrapper a').addClass('btn-primary').removeClass('btn-default');   
+        $('#table1_wrapper a.btn').css('margin-right','2px');
+        $('.dt-buttons.btn-group').css({'float':'left','margin-right':'20px'});
+        $('#table1_length').css('float','left');
+        $('#table1_info').css('float','left');
     });
 </script>
