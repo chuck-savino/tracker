@@ -15,20 +15,12 @@
         <div class="col-md-4" >
         <?php
             echo form_open('statuses/form_submit');
-
-            echo form_label('status','status');
-            $data_status = array(
-                'name'=> 'status',
-                'value' => set_value('status'),
-                'placeholder' => 'Enter a status',
-                'class'=>'col-md-2 form-control'  
-            );
-            echo form_input($data_status);
+            add_form_input('status', NULL,'Enter a status')
         ?>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4" style="margin-top:10px">
+        <div class="col-md-4">
         <?php
             echo form_submit('submit','Submit',"class=\"btn btn-primary\"");
             echo form_close();
