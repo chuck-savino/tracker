@@ -21,23 +21,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <link href="<?php echo base_url(); ?>application/third_party/css/dropdown_menus_customize.css" rel="stylesheet">
  
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <!--
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        -->
         <script src="<?php echo base_url(); ?>application/third_party/jquery/jquery-1.12.0.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="<?php echo base_url(); ?>application/third_party/bootstrap/js/bootstrap.min.js"></script>
 	
-        <!-- Datatables bootstrap styling already loaded -->
-
+        <!-- Datatables -->
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/bs/jszip-2.5.0,pdfmake-0.1.18,dt-1.10.11,b-1.1.2,b-html5-1.1.2/datatables.min.css"/>
         <script type="text/javascript" src="https://cdn.datatables.net/t/bs/jszip-2.5.0,pdfmake-0.1.18,dt-1.10.11,b-1.1.2,b-html5-1.1.2/datatables.min.js"></script>
-        
         <style type="text/css">
-
-	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #E13300; color: white; }
-
+            ::selection { background-color: #E13300; color: white; }
+            ::-moz-selection { background-color: #E13300; color: white; }
 	</style>
 </head>
 <body>
@@ -59,14 +52,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 if ($this->ion_auth->in_group('admin'))
                 { 
                 ?>  
-                <li class="active"><a href="<?php echo base_url(); ?>"><span class="glyphicon glyphicon-home"></span></a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Issues <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="<?php echo base_url(); ?>issues/update_issue">New Issue</a></li>
-                        <li><a href="<?php echo base_url(); ?>issues">All Issues</a></li>
-                    </ul>
-                </li>
+                    <li class="active"><a href="<?php echo base_url(); ?>"><span class="glyphicon glyphicon-home"></span></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Issues <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo base_url(); ?>issues/update_issue">New Issue</a></li>
+                            <li><a href="<?php echo base_url(); ?>issues">All Issues (client-side)</a></li>
+                            <li><a href="<?php echo base_url(); ?>issues/show_issues_server_side">All Issues (server-side)</a></li>
+                        </ul>
+                    </li>
                 <?php
                 }
                 if ($this->ion_auth->in_group('admin'))

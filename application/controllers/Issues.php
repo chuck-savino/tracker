@@ -14,6 +14,7 @@ Class Issues extends Base_controller
         $this->load->model('issue_model');
         $this->load->model('status_model');
         $this->load->model('user_model');
+        $this->load->library('ssp');
     }
     
     public function index()
@@ -21,6 +22,64 @@ Class Issues extends Base_controller
         $data=[];
         $data = $this->prep_data_for_all_issues($data);
         $this->load->view('bootstrap_auth/template',$data);
+    }
+    
+    public function show_issues_server_side()
+    {        
+        $data['title'] = "All Issues (server-side)";
+        $data['v'] = 'issues_server_side';      
+        $this->load->view('bootstrap_auth/template',$data);
+    }
+
+    public function get_all_issues_json()
+    {        
+     
+        // DB table to use
+        $table = 'issues';
+
+        // Table's primary key
+        $primaryKey = 'id';
+
+        // Array of database columns which should be read and sent back to DataTables.
+        // The `db` parameter represents the column name in the database, while the `dt`
+        // parameter represents the DataTables column identifier. In this case simple
+        // indexes
+        $columns = array(
+            array( 'db' => 'id', 'dt' => 0 ),
+            array( 'db' => 'name',  'dt' => 1 ),
+            array( 'db' => 'status',   'dt' => 2 ),
+            array( 'db' => 'assigned_to',     'dt' => 3 ),
+            array( 'db' => 'os',     'dt' => 4 ),
+            array(
+                'db'        => 'updated_at',
+                'dt'        => 5,
+                'formatter' => function( $d, $row ) {
+                    return date( 'm/d/Y h:i:s a', strtotime($d));
+                }
+            ),
+            array( 'db'=>'os',     'dt' => 6 )        
+        );
+
+        // SQL server connection information
+        $sql_details = array(
+            'user' => $this->db->username,
+            'pass' => $this->db->password,
+            'db'   => $this->db->database,
+            'host' => $this->db->hostname
+        );
+
+        $data = ssp::simple( $_GET, $sql_details, $table, $primaryKey, $columns );
+        $options = $this->get_list_options($data);
+        //swap the internal db user id  with the user's name for display in view
+        $idx = -1;
+        foreach($data['data'] as $row)
+        {
+            $idx  += 1;
+            $data['data'][$idx][3] = $options['users'][$row[3]];        
+        }    
+
+        echo json_encode($data);
+
     }
     
     public function get_issue($id=NULL)
@@ -139,16 +198,16 @@ Class Issues extends Base_controller
     {
         $data['statuses'] = $this->status_model->get_all_status_values();
         $data['users'] = $this->user_model->get_all_users_list();
-        
         return $data;
     }
     
     private function prep_data_for_all_issues($data)
     {
-        $data['title'] = "All Issues";
+        $data['title'] = "All Issues (client-side)";
         $data['issues'] = $this->issue_model->get_all_issues_summary();
         $data['v'] = 'issues';
         $data = $this->get_list_options($data);
         return $data;
-    }        
+    }
+    
 }
