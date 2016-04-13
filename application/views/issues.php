@@ -52,6 +52,7 @@
         $('#table1').DataTable({
             dom:'Blfrtip', 
             processing:true,
+            deferRender:true,
             buttons: [ 'copy', 'csv','excel', 'pdf'],
             "columnDefs":[
                 {"width":"140px","targets":5},
