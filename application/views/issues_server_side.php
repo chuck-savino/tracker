@@ -27,10 +27,11 @@
 </div>
 
 <script>
+    var base_url = "<?php echo base_url();?>";
     $(document).ready(function(){
         $('#table1')
             .on('xhr.dt',function(e,settings,json,xhr){
-                var base_url = "<?php echo base_url();?>";
+                
                 for (var i=0, ien=json.data.length; i < ien; i++)
                 {
                     var id = json.data[i][0];
@@ -46,7 +47,7 @@
             .DataTable({
                 processing:true,
                 serverSide:true,
-                ajax: "http://www.csavino.com/tracker/issues/get_all_issues_json"
+                ajax: base_url + "issues/get_all_issues_json"
             });
         $('#table1_paginate').css('float','right');
     });
