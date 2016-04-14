@@ -35,7 +35,7 @@ Class Issues extends Base_controller
     {        
      
         // DB table to use
-        $table = 'issues';
+        $table = 'issues2';
 
         // Table's primary key
         $primaryKey = 'id';
@@ -48,7 +48,7 @@ Class Issues extends Base_controller
             array( 'db' => 'id', 'dt' => 0 ),
             array( 'db' => 'name',  'dt' => 1 ),
             array( 'db' => 'status',   'dt' => 2 ),
-            array( 'db' => 'assigned_to',     'dt' => 3 ),
+            array( 'db' => 'fullname',     'dt' => 3 ),
             array( 'db' => 'os',     'dt' => 4 ),
             array(
                 'db'        => 'updated_at',
@@ -70,14 +70,7 @@ Class Issues extends Base_controller
 
         $data = ssp::simple( $_GET, $sql_details, $table, $primaryKey, $columns );
         $options = $this->get_list_options($data);
-        //swap the internal db user id  with the user's name for display in view
-        $idx = -1;
-        foreach($data['data'] as $row)
-        {
-            $idx  += 1;
-            $data['data'][$idx][3] = $options['users'][$row[3]];        
-        }    
-
+       
         echo json_encode($data);
 
     }
