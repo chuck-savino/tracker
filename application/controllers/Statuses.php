@@ -5,7 +5,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-include_once 'bootstrap_auth/Base_controller.php';
 
 class Statuses extends Base_Controller
 {

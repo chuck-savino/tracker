@@ -1,7 +1,18 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined ('BASEPATH') or exit('No direct scripts acces allowed');
 
-class Base_controller extends CI_Controller 
+/**
+ * The only reason MY_Controller exists is to serve as a base class for Base_Controller
+ * Any classes in MY_Controller.php will get autoloaded.
+ */
+class MY_Controller extends CI_Controller
+{
+   public function __construct() {
+        parent::__construct();
+    }
+    
+}
+
+class Base_controller extends MY_Controller 
 {
     
     protected $_logged_in;

@@ -1,9 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-include_once 'bootstrap_auth/Base_controller.php';
 
 /* 
- * Base_controller ensures that no methods can be executed unless the user is logged in
- * 
+ * Base_controller ensures that no methods can be executed unless the user is logged in.
+ * To autoload, it is located in the MY_Controller.php file.
  */
 
 Class Issues extends Base_controller 
